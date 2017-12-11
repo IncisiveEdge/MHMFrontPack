@@ -38,9 +38,10 @@ module.exports = {
     // },
     proxyTable: {
       '/api': {
-        target: 'http://127.0.0.1:8080',
+        target: 'http://115.28.67.79:8080',
         changeOrigin: true,
         pathRewrite: {
+          // '^/api': '/ICEManage'
           '^/api': '/MusicHandManage'
         }
       }

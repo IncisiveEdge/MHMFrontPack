@@ -5,6 +5,7 @@ const $ = require('jquery')
 let rest = {}
 let resta = {}
 const ctxPath = '/api'
+// const ctxPath = '/mhm'
 function restAjax (method, url, parameter, _isAsync, objectTransfer) {
   const _deferred = $.Deferred()
   let returnVal = _deferred

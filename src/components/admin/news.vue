@@ -17,7 +17,6 @@
   import IModal from '@/components/partical/Modal'
   import ImageViewer from '@/components/partical/ImageViewer'
   import {resta} from '@/assets/rest.js'
-  console.log(resta)
   export default {
     name: 'News',
     components: {
