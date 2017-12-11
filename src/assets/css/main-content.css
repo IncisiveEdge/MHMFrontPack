@@ -1,0 +1,142 @@
+/******* Transition Effects **********/
+
+/*********** fade ***********/
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
+}
+
+
+/*********** slide ***********/
+.slide-enter-active {
+  animation: fadeInRight;
+}
+.slide-leave-active {
+  animation: fadeOutRight;
+}
+
+.animated {
+  animation-duration: .5s;
+}
+
+/*********** loading ***********/
+.loading-block {
+  position: absolute;
+  display: table;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.6);
+  z-index:1000;
+  cursor: wait;
+  user-select: none;
+  -webkit-transition: background .5s;
+  -moz-transition: background .5s;
+  -ms-transition: background .5s;
+  -o-transition: background .5s;
+  transition: background .5s;
+}
+
+.loading-block>div {
+  display: table-cell;
+  vertical-align: middle;
+  color: white;
+}
+
+/******** loading spin *********/
+.spin-icon-load{
+  font-size: large;
+  animation: ani-demo-spin 1s linear infinite;
+}
+@keyframes ani-demo-spin {
+  from { transform: rotate(0deg);}
+  50%  { transform: rotate(180deg);}
+  to   { transform: rotate(360deg);}
+}
+
+/*** self-defined layout ***/
+.clearfloat {
+  zoom: 1;
+}
+
+.clearfloat:after {
+  display: block;
+  clear: both;
+  content: "";
+  visibility: hidden;
+  height: 0;
+}
+
+.response-layout-12,.response-layout-9,.response-layout-8,.response-layout-6,.response-layout-4,.response-layout-3{
+  float:left;
+  /*float:left;*/
+}
+
+.response-layout-12{
+  width: 100%;
+}
+
+.response-layout-9{
+  width: 75%;
+}
+
+.response-layout-8{
+  width: 66.666666%;
+}
+
+.response-layout-6{
+  width: 50%;
+}
+
+.response-layout-4{
+  width: 33.333333%;
+}
+
+.response-layout-3{
+  width: 25%;
+}
+
+@media screen and (max-width: 1350px){
+
+  .response-layout-3{
+    width: 50%;
+  }
+
+  .response-layout-4{
+    width: 50%;
+  }
+
+  .response-layout-8{
+    width: 100%;
+  }
+
+  .response-layout-9{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 900px){
+  .response-layout-3{
+    width: 100%;
+  }
+
+  .response-layout-6{
+    width: 100%;
+  }
+
+  .response-layout-4{
+    width: 100%;
+  }
+
+  .response-layout-8{
+    width: 100%;
+  }
+
+  .response-layout-9{
+    width: 100%;
+  }
+}
+
+
