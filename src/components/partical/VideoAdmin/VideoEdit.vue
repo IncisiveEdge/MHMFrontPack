@@ -11,36 +11,35 @@
 <template>
   <div>
     <Form ref="newsEdit" :rules="rules" :model="item" :label-width="80">
-      <FormItem label="标题" prop="title">
+      <FormItem label="视频名称" prop="title">
         <Input v-model="item.title"></Input>
       </FormItem>
 
-      <FormItem label="摘要" prop="newsabstract">
-        <Input v-model="item.newsabstract" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="请输入..."></Input>
+      <FormItem label="所属分类" prop="type">
+        <Select v-model="item.type" style="width:200px">
+          <Option value="">-- 请选择 --</Option>
+          <Option v-if="typeList && typeList.length" v-for="type in typeList" :value="type.typename" :key="type.id">{{ type.typename }}</Option>
+        </Select>
       </FormItem>
 
-      <FormItem label="标题图片">
-        <i-upload :config="imageUpload"></i-upload>
+      <FormItem label="视频介绍" prop="intro">
+        <Input v-model="item.intro" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="请输入..."></Input>
       </FormItem>
 
-      <!--<FormItem label="预览" v-if="item.newspic">-->
-      <!--<div class="img-preview-container">-->
-      <!--<i-image :img-url="imgUrl"></i-image>-->
-      <!--</div>-->
-      <!--</FormItem>-->
-
-
-      <FormItem label="内容编辑">
-        <i-editor :value="item.content" @input="contentChanged"></i-editor>
+      <FormItem label="上传视频">
+        <i-upload :config="videoUpload"></i-upload>
       </FormItem>
 
+      <FormItem label="视频地址" v-if="item.addsrc">
+        <Input readonly v-model="item.addsrc"></Input>
+      </FormItem>
     </Form>
-    <image-viewer ref="viewer"></image-viewer>
   </div>
 </template>
 
 <script>
   import ie from '@/assets/ie/ie'
+  import {resta} from '@/assets/rest'
   import IUpload from '../Upload/Upload'
   import IEditor from '../Editor'
   import IImage from '../../partical/Image/ImageResize'
@@ -79,46 +78,51 @@
     },
     data () {
       return {
+        typeList: [],
         rules: {
           title: [
-            { required: true, message: '请填写新闻标题', trigger: 'blur' },
-            { type: 'string', max: 30, message: '标题最多能输入20个字', trigger: 'change' }
+            { required: true, message: '请填写视频名称', trigger: 'blur' },
+            { type: 'string', max: 30, message: '视频名称最多能输入20个字', trigger: 'change' }
           ],
-          newsabstract: [
-            { required: true, message: '请填写新闻摘要', trigger: 'blur' },
-            { type: 'string', max: 144, message: '摘要最多能输入144个字', trigger: 'change' }
+          type: [
+            { required: true, message: '请选择视频类型', trigger: 'change' }
+          ],
+          intro: [
+            { required: true, message: '请填写视频介绍', trigger: 'blur' },
+            { type: 'string', max: 144, message: '视频介绍最多能输入144个字', trigger: 'change' }
           ]
         },
-        imageUpload: {
-          name: '上传图片',
-          method: 'uploadimage',
-          accept: 'image/*',
+        videoUpload: {
+          name: '上传',
+          method: 'uploadvideo',
+          accept: 'video/*',
           maxSize: 500,
-          format: ['png', 'jpeg', 'gif', 'jpg'],
+          format: ['rm', 'rmvb', 'wmv', 'avi', 'mp4'],
           defaultFiles: (() => {
-            if (this.item.newspic) {
-              let picName = this.item.newspic.split('/')
-              picName = picName[picName.length - 1]
+            if (this.item.addsrc) {
+              console.log(this.item.addsrc)
+              let videoName = this.item.addsrc.split('/')
+              videoName = videoName[videoName.length - 1]
               return [{
-                name: picName,
-                url: this.item.newspic
+                name: videoName,
+                url: this.item.addsrc
               }]
             }
           })(),
           before: () => {
-            if (this.item.newspic) {
+            if (this.item.addsrc) {
               this.$Message.warning('上传文件已存在，如需重新上传请先移除')
             }
-            return !this.item.newspic
+            return !this.item.addsrc
           },
           success: (res, file, fileList) => {
             if (res) {
-              this.item.newspic = res.url
+              this.item.addsrc = res.url
               this.$Message.success(res.original + ' 上传成功')
             }
           },
           remove: (file, fileList) => {
-            this.item.newspic = ''
+            this.item.addsrc = ''
             this.$Message.success(file.name + ' 已移除')
           },
           preview: (file) => {
@@ -131,6 +135,12 @@
           }
         }
       }
+    },
+    mounted () {
+      resta.get('/getvideotype.do').done(res => {
+        this.typeList = res.typelist
+      })
     }
+
   }
 </script>

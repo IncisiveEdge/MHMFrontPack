@@ -88,6 +88,17 @@ class IEListObject {
     this.created = true
   }
 
+  renderSync (listTpl, listData) {
+    if (!listTpl || !listData) {
+      return
+    }
+    this.fillTemplate(this.tplRender(listTpl))
+    this.globalConfig.pagination.total = listData.length || 0
+    this.fillData(listData)
+    this.globalConfig.loading = false
+    this.created = true
+  }
+
   render (queryListTplConfig, queryListConfig) {
     if (!queryListTplConfig || !queryListConfig) {
       return

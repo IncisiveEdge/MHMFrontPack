@@ -17,15 +17,13 @@
 </style>
 <template>
   <div id="app">
-    <admin-index v-if="pageType === 'admin'"></admin-index>
+    <admin-index v-if="pageType === 'index'"></admin-index>
     <login v-if="pageType === 'login'"></login>
-    <index v-if="pageType === 'index'"></index>
 
   </div>
 </template>
 
 <script>
-import index from './components/index/index'
 import adminIndex from './components/admin/index'
 import login from './components/admin/login'
 export default {
@@ -36,7 +34,6 @@ export default {
     }
   },
   components: {
-    index,
     adminIndex,
     login
   },

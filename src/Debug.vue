@@ -7,7 +7,7 @@
 </style>
 
 <template>
-    <div style="margin-top: 100px;height: 1000px;padding: 50px">
+    <div style="margin-top: 20px;">
         <Affix>
             <span>本地存储：</span>
             <i-switch v-model="storage" size="large" @on-change="changeStorage">

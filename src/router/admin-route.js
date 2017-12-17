@@ -1,47 +1,33 @@
 /**
  * Created by amarsoft on 2017/10/15.
  */
-import Login from '../components/admin/login'
-// import Desktop from '../components/admin/desktop'
-import Images from '../components/admin/images'
-import News from '../components/admin/news'
-import Matchs from '../components/admin/matchs'
-import Products from '../components/admin/products'
-import Reports from '../components/admin/reports'
-import User from '../components/admin/user'
+
+import Video from '../components/admin/video'
+import Audio from '../components/admin/audio'
+import Opern from '../components/admin/opern'
+import News from '../components/partical/VideoAdmin/VideoEdit'
+import Debug from '../Debug'
 
 export default [
   {
-    path: '/admin/',
-    name: 'adminDesktop'
-    // component: Desktop
+    path: '/video',
+    name: 'video',
+    component: Video
   }, {
-    path: '/admin/login',
-    name: 'adminLogin',
-    component: Login
+    path: '/audio',
+    name: 'audio',
+    component: Audio
   }, {
-    path: '/admin/user',
-    name: 'adminUser',
-    component: User
+    path: '/opern',
+    name: 'opern',
+    component: Opern
   }, {
-    path: '/admin/images',
-    name: 'adminImages',
-    component: Images
-  }, {
-    path: '/admin/news',
-    name: 'adminNews',
+    path: '/news',
+    name: 'news',
     component: News
   }, {
-    path: '/admin/matchs',
-    name: 'adminMatchs',
-    component: Matchs
-  }, {
-    path: '/admin/products',
-    name: 'adminProducts',
-    component: Products
-  }, {
-    path: '/admin/reports',
-    name: 'adminReports',
-    component: Reports
+    path: '/debug',
+    name: 'debug',
+    component: Debug
   }
 ]

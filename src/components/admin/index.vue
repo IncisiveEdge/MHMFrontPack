@@ -342,30 +342,30 @@
         spanLeft: 5,
         spanRight: 19,
         menuData: [{
-          id: 'images',
-          url: '/admin/images',
-          name: '轮播图片',
-          icon: 'aperture'
+          id: 'video',
+          url: '/video',
+          name: '视频管理',
+          icon: 'ios-videocam'
+        }, {
+          id: 'audio',
+          url: '/audio',
+          name: '音频管理',
+          icon: 'music-note'
+        }, {
+          id: 'opern',
+          url: '/opern',
+          name: '曲谱管理',
+          icon: 'ios-musical-notes'
         }, {
           id: 'news',
-          url: '/admin/news',
+          url: '/news',
           name: '新闻管理',
-          icon: 'compose'
+          icon: 'ios-musical-notes'
         }, {
-          id: 'matchs',
-          url: '/admin/matchs',
-          name: '赛事营地',
-          icon: 'filing'
-        }, {
-          id: 'products',
-          url: '/admin/products',
-          name: '产品管理',
-          icon: 'cube'
-        }, {
-          id: 'reports',
-          url: '/admin/reports',
-          name: '报告信息',
-          icon: 'android-contacts'
+          id: 'debug',
+          url: '/debug',
+          name: '接口调试',
+          icon: 'ios-musical-notes'
         }],
         tabsData: [],
         tabsCollapse: [],
