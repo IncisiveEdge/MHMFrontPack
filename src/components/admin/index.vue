@@ -210,7 +210,7 @@
       <Col :span="spanLeft" class="layout-menu-left">
         <Menu active-name="1" theme="dark" width="auto"  @on-select="selectItem" accordion>
           <div class="layout-logo-left">
-            © Amarsoft
+            © MusicHand 乐手
           </div>
           <MenuItem v-if="menuItem.visible !== false" v-for="(menuItem, index) in menuData" :id="'menu-item-'+ menuItem.id" :key="index" :name="index">
             <Icon :type="menuItem.icon" :size="iconSize"></Icon>
@@ -355,11 +355,6 @@
           id: 'opern',
           url: '/opern',
           name: '曲谱管理',
-          icon: 'ios-musical-notes'
-        }, {
-          id: 'news',
-          url: '/news',
-          name: '新闻管理',
           icon: 'ios-musical-notes'
         }, {
           id: 'debug',

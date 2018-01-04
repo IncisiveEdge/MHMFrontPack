@@ -103,6 +103,7 @@ class IEListObject {
     if (!queryListTplConfig || !queryListConfig) {
       return
     }
+    this.globalConfig.queryListConfig = queryListConfig
     const listTplPromise = this.queryListTplData(queryListTplConfig.api, queryListTplConfig.query).done(res => {
       res = this.tplRender(res)
       this.fillTemplate(res)
@@ -117,6 +118,23 @@ class IEListObject {
     return $.when(listTplPromise, listPromise).then(() => {
       this.globalConfig.loading = false
       this.created = true
+    })
+  }
+
+  refresh (queryListConfig) {
+    queryListConfig = queryListConfig || this.globalConfig.queryListConfig
+    if (!queryListConfig) return
+    this.queryListData(queryListConfig.api, queryListConfig.query).done(res => {
+      if (res) {
+        if (res instanceof Array) {
+          this.globalConfig.pagination.total = res.length || 0
+          this.fillData(res)
+        } else if (res.list && res.list instanceof Array) {
+          this.globalConfig.pagination.total = res.list.length || 0
+          this.fillData(res.list)
+        }
+      }
+      this.globalConfig.selectedRows && (this.globalConfig.selectedRows.length = 0)
     })
   }
 

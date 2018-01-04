@@ -4,6 +4,7 @@
 const $ = require('jquery')
 let rest = {}
 let resta = {}
+// const ctxPath = window.location.origin + '/MusicHandManage'
 const ctxPath = '/api'
 // const ctxPath = '/mhm'
 function restAjax (method, url, parameter, _isAsync, objectTransfer) {

@@ -5,7 +5,6 @@
 import Video from '../components/admin/video'
 import Audio from '../components/admin/audio'
 import Opern from '../components/admin/opern'
-import News from '../components/partical/VideoAdmin/VideoEdit'
 import Debug from '../Debug'
 
 export default [
@@ -21,10 +20,6 @@ export default [
     path: '/opern',
     name: 'opern',
     component: Opern
-  }, {
-    path: '/news',
-    name: 'news',
-    component: News
   }, {
     path: '/debug',
     name: 'debug',

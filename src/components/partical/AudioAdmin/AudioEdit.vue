@@ -37,6 +37,10 @@
       <FormItem label="音频缩略图">
         <i-upload :config="imageUpload"></i-upload>
       </FormItem>
+
+      <FormItem label="缩略图地址" v-if="item.addsrc">
+        <Input readonly v-model="item.aicon"></Input>
+      </FormItem>
     </Form>
   </div>
 </template>
@@ -102,14 +106,14 @@
           accept: 'audio/*',
           maxSize: 5000,
           format: ['mp3', 'wmv']
-        }, this.item, 'addsrc'),
+        }, this, this.item, 'addsrc'),
         imageUpload: getUploadConfig({
           method: 'uploadimage',
           methodName: 'icon',
           accept: 'image/*',
           maxSize: 500,
           format: ['jpg', 'jpeg', 'png', 'gif']
-        }, this.item, 'aicon')
+        }, this, this.item, 'aicon')
       }
     },
     mounted () {

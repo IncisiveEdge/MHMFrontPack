@@ -2,7 +2,7 @@
  * Created by amarsoft on 2017/12/17.
  */
 
-export function getUploadConfig (config, target, attr) {
+export function getUploadConfig (config, object, target, attr) {
   const name = config.name || '上传'
   const method = config.method || 'uploadfile'
   const accept = config.accept || '*'
@@ -28,27 +28,27 @@ export function getUploadConfig (config, target, attr) {
     })(),
     before: () => {
       if (target[attr]) {
-        this.$Message.warning('上传文件已存在，如需重新上传请先移除')
+        object.$Message.warning('上传文件已存在，如需重新上传请先移除')
       }
       return !target[attr]
     },
     success: (res, file, fileList) => {
       if (res) {
         target[attr] = res.url
-        this.$Message.success(res.original + ' 上传成功')
+        object.$Message.success(res.original + ' 上传成功')
       }
     },
     remove: (file, fileList) => {
       target[attr] = ''
-      this.$Message.success(file.name + ' 已移除')
+      object.$Message.success(file.name + ' 已移除')
     },
     preview: (file) => {
       const url = file.url || (file.response && file.response.url)
       if (!url) {
-        this.$Message.warning('文件地址错误，请查询')
+        object.$Message.warning('文件地址错误，请查询')
         return
       }
-      // url && this.$refs.viewer.show(ie.url(url))
+      // url && object.$refs.viewer.show(ie.url(url))
     }
   }
 }

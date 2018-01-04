@@ -38,12 +38,13 @@
 </template>
 
 <script>
-  import ie from '@/assets/ie/ie'
+//  import ie from '@/assets/ie/ie'
   import {resta} from '@/assets/rest'
   import IUpload from '../Upload/Upload'
   import IEditor from '../Editor'
   import IImage from '../../partical/Image/ImageResize'
   import ImageViewer from '@/components/partical/ImageViewer'
+  import {getUploadConfig} from '../../../assets/js/upload-config'
   export default {
     name: '',
     props: {
@@ -92,48 +93,13 @@
             { type: 'string', max: 144, message: '视频介绍最多能输入144个字', trigger: 'change' }
           ]
         },
-        videoUpload: {
-          name: '上传',
+        videoUpload: getUploadConfig({
           method: 'uploadvideo',
+          methodName: 'video',
           accept: 'video/*',
-          maxSize: 500,
-          format: ['rm', 'rmvb', 'wmv', 'avi', 'mp4'],
-          defaultFiles: (() => {
-            if (this.item.addsrc) {
-              console.log(this.item.addsrc)
-              let videoName = this.item.addsrc.split('/')
-              videoName = videoName[videoName.length - 1]
-              return [{
-                name: videoName,
-                url: this.item.addsrc
-              }]
-            }
-          })(),
-          before: () => {
-            if (this.item.addsrc) {
-              this.$Message.warning('上传文件已存在，如需重新上传请先移除')
-            }
-            return !this.item.addsrc
-          },
-          success: (res, file, fileList) => {
-            if (res) {
-              this.item.addsrc = res.url
-              this.$Message.success(res.original + ' 上传成功')
-            }
-          },
-          remove: (file, fileList) => {
-            this.item.addsrc = ''
-            this.$Message.success(file.name + ' 已移除')
-          },
-          preview: (file) => {
-            const url = file.url || (file.response && file.response.url)
-            if (!url) {
-              this.$Message.warning('文件地址错误，请查询')
-              return
-            }
-            url && this.$refs.viewer.show(ie.url(url))
-          }
-        }
+          maxSize: 50000,
+          format: ['rm', 'rmvb', 'wmv', 'avi', 'mp4']
+        }, this, this.item, 'addsrc')
       }
     },
     mounted () {

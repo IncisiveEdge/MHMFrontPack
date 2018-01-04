@@ -93,11 +93,12 @@
         this.modal.textOk = '新增'
         this.modal.onOk = () => {
           if (this.item) {
-            resta.post('/insertnewsinfo.do', this.item, true).done(res => {
-              console.warn(res)
+            resta.post('/insertaudio.do', this.item, true).done(res => {
+              this.ieList.refresh({api: '/getaudiobypage.do'})
             })
           }
           this.modal.model = false
+          this.item = {}
         }
         this.modal.onCancel = () => {
           this.item = {}
@@ -125,8 +126,8 @@
         this.modal.textOk = '保存'
         this.modal.onOk = () => {
           if (this.item) {
-            resta.post('/updatenewsinfo.do', this.item, true).done(res => {
-              console.warn(res)
+            resta.post('/updateaudio.do', this.item, true).done(res => {
+              this.ieList.refresh({api: '/getaudiobypage.do'})
             })
           }
           this.modal.model = false
@@ -139,15 +140,29 @@
         }
       },
       del () {
+        const rows = this.ieList.getSelectedRows()
+        if (!rows || !rows.length) {
+          this.$Message.warning('请选择一条数据')
+          return
+        }
+
         this.$Modal.confirm({
           title: '确认删除',
           content: `<Icon type="information-circled" style="font-size: 30px;color:#f60;float:left"></Icon>
-                    <p>点击删除后，音频列表将永久性删除当前数据</p>
+                    <p>点击删除后，音频列表将永久性删除当前选中数据</p>
                   <p>是否继续删除？</p>`,
           okText: '删除',
           cancelText: '取消',
           onOk: () => {
-            console.log('aaa')
+            let promises = []
+            rows.map(row => {
+              promises.push(resta.post('/deleteaudio.do', {'id': row.id + ''}, true))
+            })
+
+            Promise.all(promises).then(() => {
+              this.$Message.success('删除成功')
+              this.ieList.refresh({api: '/getaudiobypage.do'})
+            })
           }
         })
       }

@@ -80,11 +80,11 @@
         this.modal.textOk = '新增'
         this.modal.onOk = () => {
           if (this.item) {
-            console.warn('aaaaaaa', this.item)
-            resta.post('/insertnewsinfo.do', this.item, true).done(res => {
-              console.warn(res)
+            resta.post('/insertvideo.do', this.item, true).done(res => {
+              this.ieList.refresh({api: '/getvideobypage.do'})
             })
           }
+          this.item = {}
           this.modal.model = false
         }
         this.modal.onCancel = () => {
@@ -114,9 +114,10 @@
         this.modal.onOk = () => {
           if (this.item) {
             resta.post('/updatevideo.do', this.item, true).done(res => {
-
+              this.ieList.refresh({api: '/getvideobypage.do'})
             })
           }
+          this.item = {}
           this.modal.model = false
         }
         this.modal.onCancel = () => {
@@ -127,6 +128,11 @@
         }
       },
       del () {
+        const rows = this.ieList.getSelectedRows()
+        if (!rows || !rows.length) {
+          this.$Message.warning('请选择一条数据')
+          return
+        }
         this.$Modal.confirm({
           title: '确认删除',
           content: `<Icon type="information-circled" style="font-size: 30px;color:#f60;float:left"></Icon>
@@ -135,7 +141,15 @@
           okText: '删除',
           cancelText: '取消',
           onOk: () => {
-            console.log('aaa')
+            let promises = []
+            rows.map(row => {
+              promises.push(resta.post('/deletevideo.do', {'id': row.id + ''}, true))
+            })
+
+            Promise.all(promises).then(() => {
+              this.$Message.success('删除成功')
+              this.ieList.refresh({api: '/getvideobypage.do'})
+            })
           }
         })
       }
