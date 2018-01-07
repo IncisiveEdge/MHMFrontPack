@@ -145,8 +145,8 @@
           if (valid) {
             this.loading = true
             this.loginText = '正在登录'
-            resta.post('/login', {username: this.formInline.user, password: this.formInline.password}, true).done(res => {
-              if (res.body) {
+            resta.post('/sysuserlogin.do', {username: this.formInline.user, userpwd: this.formInline.password}, true).done(res => {
+              if (res.code === 0) {
                 this.$Message.success('登录成功！即将跳转 ...')
                 setTimeout(() => {
                   if (!this.remember) {
@@ -156,7 +156,7 @@
                     sessionUser.remember = this.remember
                     Cookie.set('sessionUser', JSON.stringify(sessionUser), 7)
                   }
-                  this.$router.push({path: '/admin/'})
+                  this.$router.push({path: '/admin', params: {username: res.sysuser.username}})
 //                  console.log(this.$route, window.location)
 //                  const adminPageUrl = window.location.host + '/admin/login'
 //                  console.log(adminPageUrl)

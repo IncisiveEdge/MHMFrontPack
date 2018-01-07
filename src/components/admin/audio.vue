@@ -60,10 +60,10 @@
       this.ieList.addBtn(['删除', 'del', 'trash-a', 'error'])
       this.ieList.setPagination(false)
       const tplList = {
-        id: '编号',
+//        id: '编号',
         title: '音频名称',
-        type: '所属分类',
-        addsrc: '音频地址',
+        typename: '所属分类',
+//        addsrc: '音频地址',
         intro: '音频介绍',
         aicon: '图标',
         agreenums: '点赞次数',

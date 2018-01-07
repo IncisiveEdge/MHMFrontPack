@@ -342,6 +342,11 @@
         spanLeft: 5,
         spanRight: 19,
         menuData: [{
+          id: 'type',
+          url: '/type',
+          name: '类别管理',
+          icon: 'android-list'
+        }, {
           id: 'video',
           url: '/video',
           name: '视频管理',
@@ -450,11 +455,13 @@
       }
     },
     created () {
-      resta.get('/getSessionUser').done((res) => {
-        if (res.body) {
-          this.user = res.body
-        }
-      })
+//      resta.get('/getSessionUser').done((res) => {
+//        if (res.body) {
+//          this.user = res.body
+//        }
+//      })
+      console.log(this.$route)
+      // this.user = this.$route.query.username
       $.extend(this, navPageFactory)
       setTimeout(() => {
         const tabItem = this.searchItemByUrl(this.$route.path, this.menuData)

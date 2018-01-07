@@ -60,10 +60,10 @@
       this.ieList.setPagination(false)
       resta.get('/getvideobypage.do').done(res => {
         const tplList = {
-          id: '编号',
+//          id: '编号',
           title: '视频名称',
-          addsrc: '视频地址',
-          type: '所属分类',
+//          addsrc: '视频地址',
+          typename: '所属分类',
           intro: '视频介绍',
           agreenums: '点赞次数',
           pubtime: '上传时间'

@@ -94,7 +94,7 @@ import {resta} from '@/assets/rest.js'
 	        this.modal.onOk = () => {
 	          if (this.item && this.item.type && this.item.api) {
 	            this.push($.extend({},this.item))
-                this.openStorage()
+              this.openStorage()
 	          }
 	          this.item = {type:'get'}
 
@@ -177,7 +177,7 @@ import {resta} from '@/assets/rest.js'
     	},
     	push(item){
     		item.index = new Date().getTime()
-    		this.data.push(item)
+    		this.data.unshift(item)
     	},
     	getIndex(item){
     		for(var i=0; i<this.data.length; i++){
