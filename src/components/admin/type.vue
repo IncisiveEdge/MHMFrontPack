@@ -97,7 +97,7 @@
         if (item && item.value) {
           resta.post('/insert' + this.typeClass + 'type.do', {typename: item.value}, true).done((res) => {
             this.$Message.success('新增类别保存成功')
-            item.id = res.id
+            item.id = res.id.id
             item.del = true
             item.remove = false
             item.update = true
