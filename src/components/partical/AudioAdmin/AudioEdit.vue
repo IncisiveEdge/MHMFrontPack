@@ -104,14 +104,14 @@
           method: 'uploadfile',
           methodName: 'upfile',
           accept: 'audio/*',
-          maxSize: 5000,
+          maxSize: 51200,
           format: ['mp3', 'wmv']
         }, this, this.item, 'addsrc'),
         imageUpload: getUploadConfig({
           method: 'uploadimage',
           methodName: 'icon',
           accept: 'image/*',
-          maxSize: 500,
+          maxSize: 5120,
           format: ['jpg', 'jpeg', 'png', 'gif']
         }, this, this.item, 'aicon')
       }

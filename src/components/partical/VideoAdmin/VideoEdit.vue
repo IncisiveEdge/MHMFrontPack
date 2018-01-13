@@ -105,14 +105,14 @@
           method: 'uploadvideo',
           methodName: 'video',
           accept: 'video/*',
-          maxSize: 50000,
+          maxSize: 512000,
           format: ['rm', 'rmvb', 'wmv', 'avi', 'mp4']
         }, this, this.item, 'addsrc'),
         imageUpload: getUploadConfig({
           method: 'uploadimage',
           methodName: 'icon',
           accept: 'image/*',
-          maxSize: 500,
+          maxSize: 5120,
           format: ['jpg', 'jpeg', 'png', 'gif']
         }, this, this.item, 'aicon')
       }

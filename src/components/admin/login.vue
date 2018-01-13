@@ -156,7 +156,7 @@
                     sessionUser.remember = this.remember
                     Cookie.set('sessionUser', JSON.stringify(sessionUser), 7)
                   }
-                  this.$router.push({path: '/admin', params: {username: res.sysuser.username}})
+                  this.$router.push({path: '/MusicHandManage', params: {username: res.sysuser.username}})
 //                  console.log(this.$route, window.location)
 //                  const adminPageUrl = window.location.host + '/admin/login'
 //                  console.log(adminPageUrl)
