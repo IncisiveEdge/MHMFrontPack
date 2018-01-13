@@ -44,7 +44,8 @@
           onCancel: () => {
             this.modal.model = false
           },
-          transfer: false
+          transfer: false,
+          maskClosable: false
         }
         $.extend(m, this.modal)
         return m

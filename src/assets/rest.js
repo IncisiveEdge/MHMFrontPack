@@ -2,10 +2,17 @@
  * Created by amarsoft on 2017/8/23.
  */
 const $ = require('jquery')
+$.ajaxSetup({
+  beforeSend: function (xhr) {
+    var sessionKeyName = 'X-SESSION-TOKEN'
+    var tokenValue = sessionStorage.getItem(sessionKeyName) || localStorage.getItem(sessionKeyName)
+    xhr.setRequestHeader(sessionKeyName, tokenValue)
+  }
+})
 let rest = {}
 let resta = {}
-const ctxPath = window.location.origin + '/MusicHandManage'
-// const ctxPath = '/api'
+// const ctxPath = window.location.origin + '/MusicHandManage'
+const ctxPath = '/api'
 // const ctxPath = '/mhm'
 function restAjax (method, url, parameter, _isAsync, objectTransfer) {
   const _deferred = $.Deferred()

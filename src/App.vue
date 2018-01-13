@@ -26,6 +26,7 @@
 <script>
 import adminIndex from './components/admin/index'
 import login from './components/admin/login'
+import {resta} from './assets/rest'
 export default {
   name: 'app',
   data () {
@@ -38,13 +39,20 @@ export default {
     login
   },
   created () {
-    if (!this.$route.path.indexOf('/admin/')) {
-      this.pageType = 'admin'
-    } else if (!this.$route.path.indexOf('/login')) {
-      this.pageType = 'login'
-    } else {
-      this.pageType = 'index'
-    }
+    // console.warn(this.$route.path)
+    // if (!this.$route.path.indexOf('/admin/')) {
+    //   this.pageType = 'admin'
+    // } else if (!this.$route.path.indexOf('/login')) {
+    //   this.pageType = 'login'
+    // } else {
+    //   this.pageType = 'index'
+    // }
+    resta.get('/getsession.do').done((res) => {
+      // console.warn(res)
+      if (res && res.code === 0) {
+        // this.pageType = 'login'
+      }
+    })
 //    console.log(this.$route)
   }
 

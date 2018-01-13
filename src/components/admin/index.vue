@@ -392,14 +392,19 @@
       },
       userOptions (name) {
         if (name === 'logout') {
-          resta.get('/logout').done((res) => {
-            if (res.body) {
-              this.$Message.success('用户已注销！请重新登录')
-              setTimeout(() => {
-                this.$router.push({path: '/login'})
-                window.location.reload()
-              }, 2000)
-            }
+          resta.get('/logout.do').done((res) => {
+            this.$Message.success('用户已注销！请重新登录')
+            setTimeout(() => {
+              this.$router.push({path: '/'})
+              window.location.reload()
+            }, 2000)
+            // if (res.body) {
+            //   this.$Message.success('用户已注销！请重新登录')
+            //   setTimeout(() => {
+            //     this.$router.push({path: '/login'})
+            //     window.location.reload()
+            //   }, 2000)
+            // }
           })
         } else if (name === 'view') {
           const item = {

@@ -65,7 +65,7 @@
         typename: '所属分类',
 //        addsrc: '音频地址',
         intro: '音频介绍',
-        aicon: '图标',
+        // aicon: '图标',
         agreenums: '点赞次数',
         pubtime: '上传时间'
       }
