@@ -2,6 +2,8 @@
  * Created by amarsoft on 2017/8/23.
  */
 const $ = require('jquery')
+// window.$$prefix = window.location.origin + '/MusicHandManage'
+window.$$prefix = window.location.origin + '/api'
 $.ajaxSetup({
   beforeSend: function (xhr) {
     var sessionKeyName = 'X-SESSION-TOKEN'

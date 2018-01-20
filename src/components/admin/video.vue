@@ -12,8 +12,8 @@
       <div slot="content">
         <video-edit ref="newsEdit" v-if="modalType === 'edit'" :item="item"></video-edit>
         <div style="width:calc(100% - 20px); height:calc(100% - 20px); display: flex; flex-wrap: wrap; margin: 0 10px; padding: 10px 0; align-items: center">
-          
-          
+
+
           <video :src="videoSrc" controls="controls" autoplay style="width: 100%" v-if="modalType === 'preview'">
           您的浏览器不支持 video 标签。
           </video>
@@ -25,7 +25,7 @@
             </h2>
           </div>
         </div>
-        
+
       </div>
     </i-modal>
     <image-viewer ref="viewer"></image-viewer>
@@ -183,7 +183,7 @@
           $('.ivu-modal-body').css({padding: '0', backgroundColor: 'rgb(38, 38, 43)'})
         })
         const row = rows[rows.length - 1]
-        const prefix = `${window.location.origin}/api`
+        const prefix = window.$$prefix
         console.warn(row)
         this.videoName = row.title
         this.videoIntro = row.intro

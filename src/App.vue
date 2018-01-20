@@ -50,7 +50,7 @@ export default {
     resta.get('/getsession.do').done((res) => {
       console.warn(res)
       if (res && res.code === 0) {
-        // this.pageType = 'login'
+//        this.pageType = 'login'
       }
     })
 //    console.log(this.$route)

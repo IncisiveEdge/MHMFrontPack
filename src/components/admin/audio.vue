@@ -192,8 +192,8 @@
           $('.ivu-modal-body').css({padding: '0', backgroundColor: 'rgb(38, 38, 43)'})
         })
         const row = rows[rows.length - 1]
-        const prefix = `${window.location.origin}/api`
-        console.log(row)
+        const prefix = window.$$prefix
+//        console.log(row)
         this.audioName = row.title
         this.audioIntro = row.intro
         this.audioImg = `${prefix}${row.aicon}`
