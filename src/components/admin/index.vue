@@ -342,6 +342,11 @@
         spanLeft: 5,
         spanRight: 19,
         menuData: [{
+          id: 'appuser',
+          url: '/MusicHandManage/appuser',
+          name: 'app用户管理',
+          icon: 'person'
+        }, {
           id: 'type',
           url: '/MusicHandManage/type',
           name: '类别管理',
@@ -361,6 +366,11 @@
           url: '/MusicHandManage/opern',
           name: '曲谱管理',
           icon: 'ios-musical-notes'
+        }, {
+          id: 'comment',
+          url: '/MusicHandManage/comment',
+          name: '评论管理',
+          icon: 'ios-list'
         }, {
           id: 'debug',
           url: '/MusicHandManage/debug',

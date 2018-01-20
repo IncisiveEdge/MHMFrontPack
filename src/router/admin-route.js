@@ -7,6 +7,8 @@ import Type from '../Components/admin/type'
 import Video from '../components/admin/video'
 import Audio from '../components/admin/audio'
 import Opern from '../components/admin/opern'
+import Appuser from '../components/admin/appuser'
+import Comment from '../components/admin/comment'
 import NotFound from '../404'
 import Debug from '../Debug'
 
@@ -27,6 +29,14 @@ export default [
     path: '/MusicHandManage/opern',
     name: 'opern',
     component: Opern
+  }, {
+    path: '/MusicHandManage/appuser',
+    name: 'appuser',
+    component: Appuser
+  }, {
+    path: '/MusicHandManage/comment',
+    name: 'comment',
+    component: Comment
   }, {
     path: '/MusicHandManage/debug',
     name: 'debug',
