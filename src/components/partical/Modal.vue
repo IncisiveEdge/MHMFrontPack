@@ -24,7 +24,7 @@
   >
     <div v-if="!modal.title" slot="header"><slot name="header"></slot></div>
     <slot name="content"></slot>
-    <div v-if="!modal.onOk && !modal.onCancel" slot="footer"><slot name="footer"></slot></div>
+    <div v-if="!modal.onOk" slot="footer"><slot name="footer"></slot></div>
 
   </Modal>
 </template>

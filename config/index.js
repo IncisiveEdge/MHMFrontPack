@@ -39,7 +39,7 @@ module.exports = {
     // },
     proxyTable: {
       '/api': {
-        target: 'http://www.incisive-edge.cn',
+        target: 'http://www.incisive-edge.cn:8080',
         changeOrigin: true,
         pathRewrite: {
           // '^/api': '/ICEManage'

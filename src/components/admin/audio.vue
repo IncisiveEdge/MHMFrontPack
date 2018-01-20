@@ -12,6 +12,16 @@
     <i-modal :modal="modal">
       <div slot="content">
         <audio-edit ref="newsEdit" v-if="modalType === 'edit'" :item="item"></audio-edit>
+        <div style="width:100%; height:100%; display: flex; flex-wrap: wrap; justify-content: center; align-items: center">
+          <h2 style="width: 100%; text-align: center; color: #2d8cf0; padding: 10px 0">
+            {{audioName}}
+            <h4 style='display:inline; color: #999'>{{audioIntro}}</h4>
+          </h2>
+          <img :src="audioImg" height=200 style="margin-bottom: 20px" />
+          <audio :src="audioSrc" controls="controls" autoplay style="width: 100%" v-if="modalType === 'preview'">
+            您的浏览器不支持 audio 标签。
+          </audio>
+        </div>
       </div>
     </i-modal>
     <image-viewer ref="viewer"></image-viewer>
@@ -25,6 +35,7 @@
   import IModal from '@/components/partical/Modal'
   import ImageViewer from '@/components/partical/ImageViewer'
   import {resta} from '../../assets/rest.js'
+  import $ from 'jquery'
 
   export default {
     name: '',
@@ -35,6 +46,10 @@
           model: false
         },
         modalType: '',
+        audioName: '',
+        audioIntro: '',
+        audioImg: '',
+        audioSrc: '',
         item: {}
       }
     },
@@ -57,6 +72,7 @@
        */
       this.ieList.addBtn(['新增', 'new', 'plus', 'primary'])
       this.ieList.addBtn(['编辑', 'edit', 'edit', 'success'])
+      this.ieList.addBtn(['音频预览', 'preview', 'ios-mic', 'info'])
       this.ieList.addBtn(['删除', 'del', 'trash-a', 'error'])
       this.ieList.setPagination(false)
       const tplList = {
@@ -165,6 +181,41 @@
             })
           }
         })
+      },
+      preview () {
+        const rows = this.ieList.getSelectedRows()
+        if (!rows || !rows.length) {
+          this.$Message.warning('请选择一条数据')
+          return
+        }
+        setTimeout(() => {
+          $('.ivu-modal-body').css({padding: '0', backgroundColor: 'rgb(38, 38, 43)'})
+        })
+        const row = rows[rows.length - 1]
+        const prefix = `${window.location.origin}/api`
+        console.log(row)
+        this.audioName = row.title
+        this.audioIntro = row.intro
+        this.audioImg = `${prefix}${row.aicon}`
+        this.audioSrc = `${prefix}${row.addsrc}`
+        this.modal.model = true
+        this.modalType = 'preview'
+        this.modal.title = '音频预览'
+        this.modal.width = 800
+        this.modal.buttons = false
+        this.modal.onCancel = () => {
+          // console.warn(232443)
+          this.audioName = ''
+          this.audioIntro = ''
+          this.audioSrc = ''
+          this.audioImg = ''
+          this.modal.model = false
+          // 组件重新加载hack
+          this.modalType = 'close'
+          setTimeout(() => {
+            $('.ivu-modal-body').css({padding: '16px', backgroundColor: 'white'})
+          })
+        }
       }
     }
   }

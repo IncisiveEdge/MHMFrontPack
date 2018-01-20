@@ -3,7 +3,6 @@
 </style>
 
 <style scoped>
-
 </style>
 
 <template>
@@ -12,6 +11,21 @@
     <i-modal :modal="modal">
       <div slot="content">
         <video-edit ref="newsEdit" v-if="modalType === 'edit'" :item="item"></video-edit>
+        <div style="width:calc(100% - 20px); height:calc(100% - 20px); display: flex; flex-wrap: wrap; margin: 0 10px; padding: 10px 0; align-items: center">
+          
+          
+          <video :src="videoSrc" controls="controls" autoplay style="width: 100%" v-if="modalType === 'preview'">
+          您的浏览器不支持 video 标签。
+          </video>
+          <div style="display:flex; margin-top: 10px; align-items:center">
+            <img :src="videoImg" height=100/>
+            <h2 style="color: #2d8cf0; display: flex; padding-left: 10px; flex-wrap:wrap">
+              {{videoName}}
+              <h4 style='width: 100%; color: #999'>{{videoIntro}}</h4>
+            </h2>
+          </div>
+        </div>
+        
       </div>
     </i-modal>
     <image-viewer ref="viewer"></image-viewer>
@@ -25,6 +39,7 @@
   import IModal from '@/components/partical/Modal'
   import ImageViewer from '@/components/partical/ImageViewer'
   import {resta} from '../../assets/rest.js'
+  import $ from 'jquery'
   export default {
     name: '',
     data () {
@@ -34,7 +49,11 @@
           model: false
         },
         modalType: '',
-        item: {}
+        item: {},
+        videoName: '',
+        videoIntro: '',
+        videoImg: '',
+        videoSrc: ''
       }
     },
     components: {
@@ -56,6 +75,7 @@
        */
       this.ieList.addBtn(['新增', 'new', 'plus', 'primary'])
       this.ieList.addBtn(['编辑', 'edit', 'edit', 'success'])
+      this.ieList.addBtn(['视频预览', 'preview', 'videocamera', 'info'])
       this.ieList.addBtn(['删除', 'del', 'trash-a', 'error'])
       this.ieList.setPagination(false)
       resta.get('/getvideobypage.do').done(res => {
@@ -152,6 +172,40 @@
             })
           }
         })
+      },
+      preview () {
+        const rows = this.ieList.getSelectedRows()
+        if (!rows || !rows.length) {
+          this.$Message.warning('请选择一条数据')
+          return
+        }
+        setTimeout(() => {
+          $('.ivu-modal-body').css({padding: '0', backgroundColor: 'rgb(38, 38, 43)'})
+        })
+        const row = rows[rows.length - 1]
+        const prefix = `${window.location.origin}/api`
+        console.warn(row)
+        this.videoName = row.title
+        this.videoIntro = row.intro
+        this.videoImg = `${prefix}${row.vicon}`
+        this.videoSrc = `${prefix}${row.addsrc}`
+        this.modal.model = true
+        this.modalType = 'preview'
+        this.modal.title = '视频预览'
+        this.modal.width = 800
+        this.modal.buttons = false
+        this.modal.onCancel = () => {
+          this.videoName = ''
+          this.videoIntro = ''
+          this.videoSrc = ''
+          this.videoImg = ''
+          this.modal.model = false
+          // 组件重新加载hack
+          this.modalType = 'close'
+          setTimeout(() => {
+            $('.ivu-modal-body').css({padding: '16px', backgroundColor: 'white'})
+          })
+        }
       }
     }
   }

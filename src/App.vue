@@ -48,7 +48,7 @@ export default {
     //   this.pageType = 'index'
     // }
     resta.get('/getsession.do').done((res) => {
-      // console.warn(res)
+      console.warn(res)
       if (res && res.code === 0) {
         // this.pageType = 'login'
       }

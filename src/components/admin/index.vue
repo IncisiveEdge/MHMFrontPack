@@ -343,27 +343,27 @@
         spanRight: 19,
         menuData: [{
           id: 'type',
-          url: '/type',
+          url: '/MusicHandManage/type',
           name: '类别管理',
           icon: 'android-list'
         }, {
           id: 'video',
-          url: '/video',
+          url: '/MusicHandManage/video',
           name: '视频管理',
           icon: 'ios-videocam'
         }, {
           id: 'audio',
-          url: '/audio',
+          url: '/MusicHandManage/audio',
           name: '音频管理',
           icon: 'music-note'
         }, {
           id: 'opern',
-          url: '/opern',
+          url: '/MusicHandManage/opern',
           name: '曲谱管理',
           icon: 'ios-musical-notes'
         }, {
           id: 'debug',
-          url: '/debug',
+          url: '/MusicHandManage/debug',
           name: '接口调试',
           icon: 'ios-musical-notes'
         }],
@@ -395,7 +395,7 @@
           resta.get('/logout.do').done((res) => {
             this.$Message.success('用户已注销！请重新登录')
             setTimeout(() => {
-              this.$router.push({path: '/'})
+              this.$router.push({path: '/MusicHandManage'})
               window.location.reload()
             }, 2000)
             // if (res.body) {
@@ -409,7 +409,7 @@
         } else if (name === 'view') {
           const item = {
             id: 'user',
-            url: '/admin/user',
+            url: '/MusicHandManage/user',
             name: '用户信息查看',
             icon: 'cube',
             visible: false
@@ -465,7 +465,7 @@
 //          this.user = res.body
 //        }
 //      })
-      console.log(this.$route)
+      // console.log(this.$route)
       // this.user = this.$route.query.username
       $.extend(this, navPageFactory)
       setTimeout(() => {
