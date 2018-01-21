@@ -105,7 +105,7 @@
           method: 'uploadvideo',
           methodName: 'video',
           accept: 'video/*',
-          maxSize: 512000,
+          maxSize: 51200,
           format: ['rm', 'rmvb', 'wmv', 'avi', 'mp4']
         }, this, this.item, 'addsrc'),
         imageUpload: getUploadConfig({

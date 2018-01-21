@@ -337,6 +337,7 @@
   import {resta} from '../../assets/rest'
   export default {
     name: 'AdminIndex',
+    props: ['user'],
     data () {
       return {
         spanLeft: 5,
@@ -382,8 +383,7 @@
         tabsDataStack: [],
         tabContents: [],
         width: {},
-        activeTabItem: {},
-        user: {}
+        activeTabItem: {}
       }
     },
     computed: {

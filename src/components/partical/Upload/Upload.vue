@@ -42,7 +42,7 @@
     props: ['config'],
     computed: {
       Upload () {
-        let url = window.location.origin + '/api/ueditor/jsp/controller.jsp?action=' + this.config.method
+        let url = window.$$prefix + '/ueditor/jsp/controller.jsp?action=' + this.config.method
         this.config.methodName && (url += '&name=' + this.config.methodName)
         console.log(url)
         let m = {

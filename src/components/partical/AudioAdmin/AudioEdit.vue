@@ -104,7 +104,7 @@
           method: 'uploadfile',
           methodName: 'upfile',
           accept: 'audio/*',
-          maxSize: 51200,
+          maxSize: 30720,
           format: ['mp3', 'wmv']
         }, this, this.item, 'addsrc'),
         imageUpload: getUploadConfig({

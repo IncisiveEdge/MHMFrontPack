@@ -17,7 +17,7 @@
 </style>
 <template>
   <div id="app">
-    <admin-index v-if="pageType === 'index'"></admin-index>
+    <admin-index v-if="pageType === 'index'" user="user"></admin-index>
     <login v-if="pageType === 'login'"></login>
 
   </div>
@@ -31,7 +31,8 @@ export default {
   name: 'app',
   data () {
     return {
-      pageType: 'index'
+      pageType: 'index',
+      user: {}
     }
   },
   components: {
@@ -52,6 +53,7 @@ export default {
       if (res && res.code === 0) {
 //        this.pageType = 'login'
       }
+      this.user.name = res.username || ''
     })
 //    console.log(this.$route)
   }
