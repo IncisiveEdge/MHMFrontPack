@@ -38,12 +38,12 @@ module.exports = {
     //   }
     // },
     proxyTable: {
-      '/api': {
+      '/MusicHandManage': {
         target: 'http://www.incisive-edge.cn:8080',
         changeOrigin: true,
         pathRewrite: {
           // '^/api': '/ICEManage'
-          '^/api': '/MusicHandManage'
+          '^/MusicHandManage': '/MusicHandManage'
         }
       }
     },

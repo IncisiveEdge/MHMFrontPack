@@ -337,7 +337,6 @@
   import {resta} from '../../assets/rest'
   export default {
     name: 'AdminIndex',
-    props: ['user'],
     data () {
       return {
         spanLeft: 5,
@@ -361,7 +360,7 @@
           id: 'audio',
           url: '/MusicHandManage/audio',
           name: '音频管理',
-          icon: 'music-note'
+          icon: 'mic-a'
         }, {
           id: 'opern',
           url: '/MusicHandManage/opern',
@@ -376,14 +375,15 @@
           id: 'debug',
           url: '/MusicHandManage/debug',
           name: '接口调试',
-          icon: 'ios-musical-notes'
+          icon: 'bug'
         }],
         tabsData: [],
         tabsCollapse: [],
         tabsDataStack: [],
         tabContents: [],
         width: {},
-        activeTabItem: {}
+        activeTabItem: {},
+        user: {name: ''}
       }
     },
     computed: {
@@ -470,13 +470,11 @@
       }
     },
     created () {
-//      resta.get('/getSessionUser').done((res) => {
-//        if (res.body) {
-//          this.user = res.body
-//        }
-//      })
-      // console.log(this.$route)
-      // this.user = this.$route.query.username
+      resta.get('/getsession.do').done((res) => {
+        if (res && res.username) {
+          this.user.name = res.username
+        }
+      })
       $.extend(this, navPageFactory)
       setTimeout(() => {
         const tabItem = this.searchItemByUrl(this.$route.path, this.menuData)

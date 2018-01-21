@@ -2,8 +2,8 @@
  * Created by amarsoft on 2017/8/23.
  */
 const $ = require('jquery')
-// window.$$prefix = window.location.origin + '/MusicHandManage'
-window.$$prefix = window.location.origin + '/api'
+window.$$prefix = window.location.origin + '/MusicHandManage'
+// window.$$prefix = window.location.origin + '/api'
 $.ajaxSetup({
   beforeSend: function (xhr) {
     var sessionKeyName = 'X-SESSION-TOKEN'
@@ -13,9 +13,8 @@ $.ajaxSetup({
 })
 let rest = {}
 let resta = {}
-// const ctxPath = window.location.origin + '/MusicHandManage'
-const ctxPath = '/api'
-// const ctxPath = '/mhm'
+const ctxPath = window.location.origin + '/MusicHandManage'
+// const ctxPath = '/api'
 function restAjax (method, url, parameter, _isAsync, objectTransfer) {
   const _deferred = $.Deferred()
   let returnVal = _deferred
