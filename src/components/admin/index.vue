@@ -216,18 +216,6 @@
             <Icon :type="menuItem.icon" :size="iconSize"></Icon>
             <span class="layout-text" v-text="menuItem.name"></span>
           </MenuItem>
-          <!--<Submenu v-for="(menuItem, index) in menuData" :id="'menu-item-'+ menuItem.id" :key="index" :name="index">-->
-            <!--<template slot="title">-->
-              <!--<Icon :type="menuItem.icon" :size="iconSize"></Icon>-->
-              <!--<span class="layout-text" v-text="menuItem.name"></span>-->
-            <!--</template>-->
-            <!--<MenuItem v-if="menuItem.children && menuItem.children.length" v-for="(subMenuItem, subIndex) in menuItem.children" :id="'menu-item-'+ menuItem.id + '-' +subMenuItem.id" :key="subIndex" :name="index + '-' +subIndex">-->
-              <!--<template>-->
-                <!--<Icon :type="subMenuItem.icon" :size="iconSize"></Icon>-->
-                <!--<span class="layout-text" v-text="subMenuItem.name"></span>-->
-              <!--</template>-->
-            <!--</MenuItem>-->
-          <!--</Submenu>-->
         </Menu>
         <div class="layout-copy">
           2011-2017 &copy; Incisive Edge
@@ -302,29 +290,11 @@
         </Dropdown>
 
         <div class="router-content" v-if="tabsDataStack.length">
-          <!--<transition class="animate-content" mode="out-in" :enter-active-class="'animated '+config.animateIn" :leave-active-class="'animated '+config.animateOut">-->
-            <!--<keep-alive>-->
           <router-view class="content-router-view"></router-view>
-            <!--</keep-alive>-->
-          <!--</transition>-->
         </div>
         <div class="layout-content-addition" v-else>
           暂无页面数据
         </div>
-        <!--<Tabs type="card" closable :animated="false" @on-tab-remove="handleTabRemove">-->
-          <!--<TabPane v-for="(item, index) in tabItems" :key="index" v-if="item.active" :label="item.name" :id="'tab-item-'+ item.id">-->
-          <!--</TabPane>-->
-          <!--<TabPane label="标签一">-->
-            <!--<div class="layout-content-main">-->
-              <!--<router-view></router-view>-->
-            <!--</div>-->
-          <!--</TabPane>-->
-          <!--<TabPane label="标签二" v-if="tab1">-->
-          <!--</TabPane>-->
-          <!--<TabPane label="标签三" v-if="tab2">-->
-          <!--</TabPane>-->
-        <!--</Tabs>-->
-        <!--<div class="layout-content-main">内容区域</div>-->
       </div>
       </Col>
     </Row>
@@ -408,13 +378,6 @@
               this.$router.push({path: '/MusicHandManage'})
               window.location.reload()
             }, 2000)
-            // if (res.body) {
-            //   this.$Message.success('用户已注销！请重新登录')
-            //   setTimeout(() => {
-            //     this.$router.push({path: '/login'})
-            //     window.location.reload()
-            //   }, 2000)
-            // }
           })
         } else if (name === 'view') {
           const item = {
