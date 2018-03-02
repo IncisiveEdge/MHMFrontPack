@@ -167,12 +167,12 @@
               } else {
                 this.loading = false
                 this.loginText = '登录'
-                this.$Message.error(res.header.message)
+                this.$Message.error(res.msg)
               }
             }).fail((res) => {
               this.loading = false
               this.loginText = '登录'
-              this.$Message.error(res.header.message)
+              this.$Message.error(res.msg)
             })
           } else {
             this.$Message.error('表单验证失败!')
